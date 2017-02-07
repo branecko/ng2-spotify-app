@@ -22,6 +22,13 @@ export class ArtistComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-
+        this._route.params
+            .map(params => params['id'])
+            .subscribe(id => {
+                this._spotifyService.getArtist(id)
+                    .subscribe(artist => {
+                        this.artist = artist;
+                    });
+            });
     }
 }
